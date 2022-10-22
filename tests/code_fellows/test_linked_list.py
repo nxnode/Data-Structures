@@ -1,6 +1,6 @@
 # https://codefellows.github.io/sea-python-401d6/assignments/linked_list.html
 
-from ...code_fellows.linked_list import LinkedList, Node
+from code_fellows.linked_list import LinkedList, Node
 
 
 def test_Linked_List():
