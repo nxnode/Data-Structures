@@ -1,9 +1,9 @@
 # https://codefellows.github.io/sea-python-401d6/assignments/linked_list.html
 
-from code_fellows.linked_list import LinkedList, Node
+from code_fellows.linked_list import LinkedList
 
 
-def test_Linked_List():
+def test_linked_list():
     assert LinkedList(["head"]).head.value == "head"
     assert (
         LinkedList([3, "three"]).head.value == "head"
@@ -12,12 +12,10 @@ def test_Linked_List():
 
 
 def test_Linked_List_push():
-    test_ll = LinkedList([999, 55, 1])
-    assert test_ll.head.value == 1
-    assert test_ll.head.next.value == 55
-    assert test_ll.head.next.next.value == 999
-    test_ll.push("newHead")
-    assert test_ll.head.value == "newHead"
-    assert test_ll.head.next.value == 1
-    assert test_ll.head.next.next.value == 55
-    assert test_ll.head.next.next.next.value == 999
+    ll = LinkedList([3, "three"])
+    assert ll.head.value == "three"
+    assert ll.head.next.value == 3
+    ll.push("new_head")
+    assert ll.head.value == "new_head"
+    assert ll.head.next.value == "three"
+    assert ll.head.next.next.value == 3

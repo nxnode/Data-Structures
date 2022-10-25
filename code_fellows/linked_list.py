@@ -8,8 +8,9 @@ class LinkedList:
             for value in values:
                 self.head = Node(value, next=self.head)
 
-    def push(self, value):
-        self.head = Node(value, next.self.head)
+    def push(self, values):
+        for value in values:
+            self.head = Node(value, next=self.head)
 
 
 class Node:
