@@ -1,21 +1,49 @@
 # https://codefellows.github.io/sea-python-401d6/assignments/linked_list.html
 
+import pytest
+
 from code_fellows.linked_list import LinkedList
 
 
 def test_linked_list():
-    assert LinkedList(["head"]).head.value == "head"
-    assert (
-        LinkedList([3, "three"]).head.value == "head"
-        and LinkedList([3, "three"]).head.next.value == 3
-    )
+    assert LinkedList([3, "three"]).head.value == "three"
+    assert LinkedList([3, "three"]).head.next.value == 3
 
 
 def test_Linked_List_push():
     ll = LinkedList([3, "three"])
     assert ll.head.value == "three"
     assert ll.head.next.value == 3
-    ll.push("new_head")
+    ll.push(["new_head"])
     assert ll.head.value == "new_head"
     assert ll.head.next.value == "three"
     assert ll.head.next.next.value == 3
+
+
+def test_Linked_List_size():
+    ll = LinkedList([3, "three"])
+    assert ll.size() == 2
+    ll = LinkedList(["new_head", 3, "three"])
+    assert ll.size() == 3
+    # ll = None
+    # assert ll.size() == "Linked List does not exist"
+
+
+def test_Linked_List_search():
+    ll = LinkedList([3, "three", "nine"])
+    assert ll.search(3).value == 3
+    expected = ll.head.next.next
+    assert ll.search(3) == expected
+    # assert ll.search("nine") == 1
+    # assert ll.search("four") == None
+
+
+def test_linked_list_pop():
+    ll = LinkedList([3, "three", "nine"])
+    expected = ll.head
+    assert ll.pop() == expected
+    assert ll.head.value == "three"
+    ll = LinkedList()
+    with pytest.raises(ValueError) as ex:
+        ll.pop()
+    assert str(ex.value) == "Empty list try again"
