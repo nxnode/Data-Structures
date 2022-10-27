@@ -25,8 +25,6 @@ def test_Linked_List_size():
     assert ll.size() == 2
     ll = LinkedList(["new_head", 3, "three"])
     assert ll.size() == 3
-    # ll = None
-    # assert ll.size() == "Linked List does not exist"
 
 
 def test_Linked_List_search():
@@ -34,8 +32,6 @@ def test_Linked_List_search():
     assert ll.search(3).value == 3
     expected = ll.head.next.next
     assert ll.search(3) == expected
-    # assert ll.search("nine") == 1
-    # assert ll.search("four") == None
 
 
 def test_linked_list_pop():
