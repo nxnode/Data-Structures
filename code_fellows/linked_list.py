@@ -4,15 +4,12 @@
 class LinkedList:
     def __init__(self, values=None):
         self.head = None
-        self.head = None
-        self.length = 0
         if values:
             for value in values:
                 self.head = Node(value, next=self.head)
 
-    def push(self, values):
-        for value in values:
-            self.head = Node(value, next=self.head)
+    def push(self, value):
+        self.head = Node(value, next=self.head)
 
     def size(self):
         count = 0
