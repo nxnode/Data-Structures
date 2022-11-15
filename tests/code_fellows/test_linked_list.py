@@ -19,6 +19,9 @@ def test_Linked_List_push():
     assert ll.head.value == "new_head"
     assert ll.head.next.value == "three"
     assert ll.head.next.next.value == 3
+    ll = LinkedList()
+    ll.push("new_head")
+    assert ll.head.value == "new_head"
 
 
 def test_Linked_List_size():
@@ -30,6 +33,8 @@ def test_Linked_List_size():
     assert ll.size() == 4
     ll.pop()
     assert ll.size() == 3
+    ll = LinkedList()
+    assert ll.size() == 0
 
 
 def test_Linked_List_search():
@@ -37,6 +42,8 @@ def test_Linked_List_search():
     assert ll.search(3).value == 3
     expected = ll.head.next.next
     assert ll.search(3) == expected
+    ll = LinkedList()
+    assert ll.search(3) == None
 
 
 def test_linked_list_pop_correct_size_is_maintained():

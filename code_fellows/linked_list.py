@@ -20,6 +20,8 @@ class LinkedList:
         return count
 
     def search(self, value):
+        if self.head == None:
+            return None
         count = 1
         current_node = self.head
         while value != current_node.value:
