@@ -39,11 +39,13 @@ def test_Linked_List_search():
     assert ll.search(3) == expected
 
 
-def test_linked_list_pop():
+def test_linked_list_pop_correct_size_is_maintained():
     ll = LinkedList([3, "three", "nine"])
+    assert ll.size() == 3
     expected = ll.head
     assert ll.pop() == expected
     assert ll.head.value == "three"
+    assert ll.size() == 2
     ll = LinkedList()
     with pytest.raises(ValueError) as ex:
         ll.pop()
