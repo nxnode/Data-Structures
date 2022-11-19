@@ -57,3 +57,8 @@ def test_linked_list_pop_correct_size_is_maintained():
     with pytest.raises(ValueError) as ex:
         ll.pop()
     assert str(ex.value) == "Empty list try again"
+
+
+def test_display():
+    ll = LinkedList([3, "three", "nine"])
+    assert ll.display() == (3, "three", "nine")

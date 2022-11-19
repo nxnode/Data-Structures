@@ -13,10 +13,10 @@ class LinkedList:
 
     def size(self):
         count = 0
-        currrent_node = self.head
-        while currrent_node:
+        current_node = self.head
+        while current_node:
             count += 1
-            currrent_node = currrent_node.next
+            current_node = current_node.next
         return count
 
     def search(self, value):
@@ -39,6 +39,16 @@ class LinkedList:
             return head_pop
         except AttributeError:
             raise ValueError("Empty list try again")
+
+    def display(self):
+        list_output = []
+        current_value = ""
+        current_node = self.head
+        while current_node:
+            list_output.append(current_node.value)
+            current_node = current_node.next
+        list_output = list_output[::-1]
+        return tuple(list_output)
 
 
 class Node:
