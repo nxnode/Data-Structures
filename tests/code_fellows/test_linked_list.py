@@ -10,6 +10,8 @@ def test_linked_list():
     assert LinkedList([3, "three"]).head.value == "three"
     assert LinkedList([3, "three"]).head.next.value == 3
     assert LinkedList().head == None
+    assert LinkedList((3, "three", "nine")).head.value == "nine"
+    assert LinkedList((3, "three", "nine")).head.next.value == "three"
 
 
 def test_linked_list_push():
