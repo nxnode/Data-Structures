@@ -11,7 +11,7 @@ class LinkedList:
                 self._length += 1
 
     def __len__(self):
-        return self.size()
+        return self._length
 
     def __print__(self):
         return self.display()
@@ -21,12 +21,7 @@ class LinkedList:
         self._length += 1
 
     def size(self):
-        count = 0
-        current_node = self.head
-        while current_node:
-            count += 1
-            current_node = current_node.next
-        return count
+        return self._length
 
     def search(self, value):
         if self.head == None:
@@ -43,7 +38,7 @@ class LinkedList:
         try:
             head_pop = self.head
             self.head = self.head.next
-            self._length += 1
+            self._length -= 1
             return head_pop
         except AttributeError:
             raise ValueError("Empty list try again")
