@@ -13,7 +13,7 @@ class LinkedList:
     def __len__(self):
         return self._length
 
-    def __print__(self):
+    def __repr__(self):
         return self.display()
 
     def push(self, value):
@@ -33,9 +33,6 @@ class LinkedList:
             return current_node
         else:
             return None
-
-    def __repr__(self):
-        return self.display()
 
     def pop(self):
         try:
