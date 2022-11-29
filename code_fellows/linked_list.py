@@ -34,6 +34,9 @@ class LinkedList:
         else:
             return None
 
+    def __repr__(self):
+        return self.display()
+
     def pop(self):
         try:
             head_pop = self.head
@@ -61,4 +64,3 @@ class Node:
 
 if __name__ == "__main__":
     ll = LinkedList([3, "three", "nine"])
-    ll_size = ll.size()

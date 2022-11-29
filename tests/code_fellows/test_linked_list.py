@@ -1,5 +1,8 @@
 # https://codefellows.github.io/sea-python-401d6/assignments/linked_list.html
 
+import sys
+from io import StringIO
+
 import pytest
 
 from code_fellows.linked_list import LinkedList
@@ -72,3 +75,13 @@ def test_linked_list_pop_correct_size_and_len_is_maintained():
 def test_display():
     ll = LinkedList([3, "three", "nine"])
     assert ll.display() == "(3, 'three', 'nine')"
+
+
+def test__print__():
+    ll = LinkedList([3, "three", "nine"])
+    buffer = StringIO()
+    sys.stdout = buffer
+    print(ll)
+    print_output = buffer.getvalue()
+    sys.stdout = sys.__stdout__
+    assert print_output == "(3, 'three', 'nine')\n"
