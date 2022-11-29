@@ -4,28 +4,30 @@
 class LinkedList:
     def __init__(self, values=None):
         self.head = None
+        self._length = 0
         if values:
             for value in values:
                 self.head = Node(value, next=self.head)
+                self._length += 1
+
+    def __len__(self):
+        return self._length
+
+    def __repr__(self):
+        return self.display()
 
     def push(self, value):
         self.head = Node(value, next=self.head)
+        self._length += 1
 
     def size(self):
-        count = 0
-        currrent_node = self.head
-        while currrent_node:
-            count += 1
-            currrent_node = currrent_node.next
-        return count
+        return self._length
 
     def search(self, value):
         if self.head == None:
             return None
-        count = 1
         current_node = self.head
         while value != current_node.value:
-            count += 1
             current_node = current_node.next
         if value == current_node.value:
             return current_node
@@ -36,9 +38,19 @@ class LinkedList:
         try:
             head_pop = self.head
             self.head = self.head.next
+            self._length -= 1
             return head_pop
         except AttributeError:
             raise ValueError("Empty list try again")
+
+    def display(self):
+        list_output = []
+        current_node = self.head
+        while current_node:
+            list_output.append(current_node.value)
+            current_node = current_node.next
+        list_output = list_output[::-1]
+        return f"{tuple(list_output)}"
 
 
 class Node:
@@ -48,5 +60,4 @@ class Node:
 
 
 if __name__ == "__main__":
-    ll = LinkedList([3, "three"])
-    ll_size = ll.size()
+    ll = LinkedList([3, "three", "nine"])
