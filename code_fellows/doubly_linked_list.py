@@ -37,6 +37,7 @@ class DLL:
             iter_next = self._iter_next
             self._iter_next = self._iter_next.next
             return iter_next
+        raise StopIteration
 
     def remove(self, value):
         found = False
