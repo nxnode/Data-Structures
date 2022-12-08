@@ -1,3 +1,6 @@
+# https://codefellows.github.io/sea-python-401d6/assignments/doubly_linked_list.html
+
+
 class DLL:
     def __init__(self):
         self.head = None
@@ -34,8 +37,6 @@ class DLL:
             iter_next = self._iter_next
             self._iter_next = self._iter_next.next
             return iter_next
-
-        raise StopIteration
 
     def remove(self, value):
         found = False
