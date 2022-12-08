@@ -39,7 +39,6 @@ def test_append_and_length():
 
 def test__iter__():
     doublyll = DLL()
-    # with pytest.raises(StopIteration):
     values = [node.value for node in doublyll]
     assert not values
     doublyll.push("another")
