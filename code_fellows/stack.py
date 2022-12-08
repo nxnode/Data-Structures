@@ -9,12 +9,10 @@ class Stack:
 
     def push(self, value):
         self.linked_list.push(value)
+        self.head = self.linked_list.head
 
     def pop(self):
-        try:
-            return self.linked_list.pop()
-        except ValueError:
-            raise ValueError("Empty Stack try again")
+        self.linked_list.pop()
 
     def __len__(self):
         return len(self.linked_list)
