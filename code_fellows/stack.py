@@ -3,20 +3,16 @@
 from code_fellows.linked_list import LinkedList
 
 
-class Stack:
-    def __init__(self, values=None):
-        self.linked_list = LinkedList(values)
-
-    def push(self, value):
-        self.linked_list.push(value)
-        self.head = self.linked_list.head
-
+class Stack(LinkedList):
     def pop(self):
-        self.linked_list.pop()
-
-    def __len__(self):
-        return len(self.linked_list)
+        try:
+            return super().pop().value
+        except ValueError:
+            raise ValueError("Empty Stack")
 
 
 if __name__ == "__main__":
-    print(len(Stack()))
+    stack_var = Stack([3, 4, 5])
+    print(len(stack_var))
+    for i in range(4):
+        print(stack_var.pop())
