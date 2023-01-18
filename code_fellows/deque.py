@@ -16,8 +16,10 @@ class Deque:
         self.head = None
         self.tail = None
         self._length = 0
+        self.is_empty = True
 
     def __len__(self):
+        self.is_empty = self._length == 0
         return self._length
 
     def size(self):
@@ -25,68 +27,85 @@ class Deque:
 
     def append(self, value):
         node = Node(value)
-        node.previous = self.tail
-        if self.tail:
-            self.tail.next = node
+        if not self.is_empty:
+            node.previous = self.tail
+            if self.tail:
+                self.tail.next = node
+            else:
+                self.head = node
+            self.tail = node
+            self._length += 1
+            self.is_empty = self._length == 0
         else:
             self.head = node
-        self.tail = node
-        self._length += 1
+            self.tail = node
+            self._length += 1
+            self.is_empty = self._length == 0
 
     def appendleft(self, value):
         node = Node(value)
-        node.next = self.head
-        if self.head:
-            self.head.previous = node
+        if not self.is_empty:
+            node.next = self.head
+            if self.head:
+                self.head.previous = node
+            else:
+                self.tail = node
+            self.head = node
+            self._length += 1
+            self.is_empty = self._length == 0
         else:
+            self.head = node
             self.tail = node
-        self.head = node
-        self._length += 1
+            self._length += 1
+            self.is_empty = self._length == 0
 
     def popleft(self):
-        popped_head = self.head
-        if self.head:
-            old_head_next = self.head.next
-            self.head = old_head_next
-            self._length -= 1
-            if self._length == 1:
-                self.tail = self.head
-            if self._length == 0:
-                self.head = self.tail
-            return popped_head.value
+        if not self.is_empty:
+            popped_head = self.head
+            if self.head:
+                old_head_next = self.head.next
+                self.head = old_head_next
+                self._length -= 1
+                self.is_empty = self._length == 0
+                return popped_head.value
+            else:
+                raise ValueError("No head to pop")
         else:
             raise ValueError("No head to pop")
 
     def peekleft(self):
-        popped_head = self.head
-        if self._length == 0:
-            return None
-        if self.head:
-            return popped_head.value
+        if not self.is_empty:
+            popped_head = self.head
+            if self._length == 0:
+                return None
+            if self.head:
+                return popped_head.value
+            else:
+                return None
         else:
             return None
 
     def pop(self):
-        popped_tail = self.tail
-        if self.tail:
-            old_tail_prev = self.tail.previous
-            self.tail = old_tail_prev
-            self._length -= 1
-            if self._length == 1:
-                self.head = self.tail
-            if self._length == 0:
-                self.head, self.tail = None, None
-            return popped_tail.value
-
+        if not self.is_empty:
+            popped_tail = self.tail
+            if self.tail:
+                old_tail_prev = self.tail.previous
+                self.tail = old_tail_prev
+                self._length -= 1
+                self.is_empty = self._length == 0
+                return popped_tail.value
+            else:
+                raise ValueError("No tail to pop")
         else:
             raise ValueError("No tail to pop")
 
     def peek(self):
-        if self._length == 0:
-            return None
-        popped_tail = self.tail
-        if self.tail:
-            return popped_tail.value
+        if not self.is_empty:
+            popped_tail = self.tail
+            if self.tail:
+                return popped_tail.value
+            else:
+                return None
         else:
             return None
 
