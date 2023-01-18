@@ -26,11 +26,11 @@ def test_stack_pop_and_len_():
     stack.push("two")
     stack.push("one")
     assert len(stack) == 3
-    assert stack.pop() == "one"
+    assert stack.pop().value == "one"
     assert stack.head.value == "two"
     assert len(stack) == 2
     stack = Stack()
     with pytest.raises(ValueError) as ex:
         stack.pop()
-    assert str(ex.value) == "Empty Stack"
+    assert str(ex.value) == "Empty stack, try again"
     assert len(stack) == 0
