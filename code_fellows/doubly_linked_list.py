@@ -69,8 +69,7 @@ class DLL:
     def pop(self):
         shifted_head = self.head
         if self.head:
-            old_head_next = self.head.next
-            self.head = old_head_next
+            self.head = self.head.next
             self._length -= 1
             return shifted_head.value
         else:
