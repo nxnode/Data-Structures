@@ -12,7 +12,7 @@ def test_linked_list():
     doublyll.push("seven")
     assert doublyll.head.value == "seven"
     assert doublyll.head.next.previous.value == "seven"
-    assert doublyll.head.previous == None
+    assert doublyll.head.previous is None
     assert doublyll.head.next.value == "five"
     assert doublyll.head.next.next.value == "three"
     assert doublyll.tail.value == "three"

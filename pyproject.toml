@@ -48,7 +48,19 @@ max-statements = 50
 junit_family = "xunit2"
 testpaths = ["tests"]
 log_level = "ERROR" # DEBUG or INFO logs are set in conftest.py LOG_LEVEL
-addopts = "--strict-markers"
+addopts = "--strict-markers --cov=code_fellows --cov-report term-missing"
 pythonpath = [
   "."
 ]
+
+[tool.coverage.report]
+exclude_lines = [
+  "def __repr__",
+  "def __str__",
+  "raise AssertionError",
+  "raise NotImplementedError",
+  "if __name__ == .__main__.:",
+]
+
+[tool.coverage.run]
+branch = true

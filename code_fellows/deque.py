@@ -2,7 +2,7 @@
 
 
 class Deque:
-    def __init__(self, value=None):
+    def __init__(self):
         self.head = None
         self.tail = None
         self._length = 0
@@ -13,18 +13,16 @@ class Deque:
     def size(self):
         return self._length
 
-    # HEAD
     def appendleft(self, value):
         node = Node(value)
         node.next = self.head
         if self.head:
-            self.head.previous = node
+            self.head.next = node.next
         else:
-            self.tail = node
+            self.head = node
         self.head = node
         self._length += 1
 
-    # HEAD
     def popleft(self):
         popped_head = self.head
         if self.head:
@@ -34,7 +32,6 @@ class Deque:
         else:
             raise ValueError("No head to pop")
 
-    # HEAD
     def peekleft(self):
         popped_head = self.head
         if self.head:
@@ -42,14 +39,13 @@ class Deque:
         else:
             return None
 
-    # TAIL
     def append(self, value):
         node = Node(value)
         node.previous = self.tail
         if self.tail:
-            self.tail.next = node
+            self.tail.previous = node.previous
         else:
-            self.head = node
+            self.tail = node
         self.tail = node
         self._length += 1
 
@@ -82,5 +78,7 @@ class Node:
 
 if __name__ == "__main__":
     deq = Deque()
-    deq.append("tail")
+    deq.appendleft("head_next")
     deq.appendleft("head")
+    deq.append("tail_prev")
+    deq.append("tail")
