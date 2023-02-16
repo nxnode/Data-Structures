@@ -49,7 +49,6 @@ class Deque:
         self.tail = node
         self._length += 1
 
-    # TAIL
     def pop(self):
         popped_tail = self.tail
         if self.tail:
@@ -60,7 +59,6 @@ class Deque:
         else:
             raise ValueError("No tail to pop")
 
-    # TAIL
     def peek(self):
         popped_tail = self.tail
         if self.tail:
