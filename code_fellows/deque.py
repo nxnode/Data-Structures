@@ -33,11 +33,7 @@ class Deque:
             raise ValueError("No head to pop")
 
     def peekleft(self):
-        popped_head = self.head
-        if self.head:
-            return popped_head.value
-        else:
-            return None
+        return self.head.value if self.head else None
 
     def append(self, value):
         node = Node(value)
@@ -60,11 +56,7 @@ class Deque:
             raise ValueError("No tail to pop")
 
     def peek(self):
-        popped_tail = self.tail
-        if self.tail:
-            return popped_tail.value
-        else:
-            return None
+        return self.tail.value if self.tail else None
 
 
 class Node:
