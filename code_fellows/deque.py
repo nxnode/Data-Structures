@@ -15,19 +15,23 @@ class Deque:
 
     def appendleft(self, value):
         node = Node(value)
-        node.next = self.head
         if self.head:
-            self.head.next = node.next
+            node.next = self.head
+            self.head.previous = node
         else:
-            self.head = node
+            self.tail = node
         self.head = node
         self._length += 1
 
     def popleft(self):
-        popped_head = self.head
         if self.head:
+            popped_head = self.head
             self.head = self.head.next
+            if self.head:
+                self.head.previous = None
             self._length -= 1
+            if len(self) <= 1:
+                self.tail = self.head
             return popped_head.value
         else:
             raise ValueError("No head to pop")
@@ -37,20 +41,23 @@ class Deque:
 
     def append(self, value):
         node = Node(value)
-        node.previous = self.tail
         if self.tail:
-            self.tail.previous = node.previous
+            node.previous = self.tail
+            self.tail.next = node
         else:
-            self.tail = node
+            self.head = node
         self.tail = node
         self._length += 1
 
     def pop(self):
-        popped_tail = self.tail
         if self.tail:
-            old_tail_prev = self.tail.previous
-            self.tail = old_tail_prev
+            popped_tail = self.tail
+            self.tail = self.tail.previous
+            if self.tail:
+                self.tail.next = None
             self._length -= 1
+            if len(self) <= 1:
+                self.head = self.tail
             return popped_tail.value
         else:
             raise ValueError("No tail to pop")

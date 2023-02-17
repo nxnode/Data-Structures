@@ -8,6 +8,9 @@ class DLL:
         self._iter_next = None
         self._length = 0
 
+    def __len__(self):
+        return self._length
+
     def push(self, value):
         node = Node(value)
         node.next = self.head
@@ -57,21 +60,27 @@ class DLL:
             raise ValueError("Not found")
 
     def shift(self):
-        shifted_tail = self.tail
         if self.tail:
-            old_tail_prev = self.tail.previous
-            self.tail = old_tail_prev
+            shifted_tail = self.tail
+            self.tail = self.tail.previous
+            if self.tail:
+                self.tail.next = None
             self._length -= 1
+            if self._length <= 1:
+                self.head = self.tail
             return shifted_tail.value
         else:
             raise ValueError("No tail to shift")
 
     def pop(self):
-        shifted_head = self.head
         if self.head:
-            old_head_next = self.head.next
-            self.head = old_head_next
+            shifted_head = self.head
+            self.head = self.head.next
+            if self.head:
+                self.head.previous = None
             self._length -= 1
+            if len(self) <= 1:
+                self.tail = self.head
             return shifted_head.value
         else:
             raise ValueError("No head to pop")

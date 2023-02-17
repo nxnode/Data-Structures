@@ -2,7 +2,7 @@
 
 import pytest
 
-from code_fellows.deque import Deque
+from code_fellows.deque_copy import Deque
 
 
 @pytest.fixture(scope="function")
@@ -53,74 +53,41 @@ def test_deq_pop_and_size(populated_deq):
     assert populated_deq.size() == 3
     assert populated_deq.pop() == "tail_prev"
     assert populated_deq.size() == 2
-    # should the deque pop all the way to the head?
-    # assert populated_deq.pop() == "head_next"
-    # assert populated_deq.size() == 1
-    # assert populated_deq.pop() == "head"
-    # assert populated_deq.size() == 0
 
 
-def test_deq_append_and_popleft(empty_deq):
+def test_deq_append(empty_deq):
     empty_deq.append("head")
     empty_deq.append("torso")
     empty_deq.append("tail")
-    assert empty_deq.head.value == "head"
-    assert empty_deq.head.previous is None
-    assert empty_deq.head.next.value == "torso"
-    assert empty_deq.head.next.previous.value == "head"
-    assert empty_deq.head.next.next.value == "tail"
-    assert empty_deq.head.next.next.previous.value == "torso"
-    assert empty_deq.tail.value == "tail"
-    assert empty_deq.tail.next is None
-    assert empty_deq.tail.previous.value == "torso"
-    assert empty_deq.tail.previous.next.value == "tail"
-    assert empty_deq.tail.previous.previous.value == "head"
-    assert empty_deq.tail.previous.previous.next.value == "torso"
+    assert empty_deq.size() == 3
+    assert empty_deq.peekleft() == "head"
+    assert empty_deq.peek() == "tail"
 
 
 def test_deq_appendleft(empty_deq):
     empty_deq.appendleft("tail")
     empty_deq.appendleft("torso")
     empty_deq.appendleft("head")
-    assert empty_deq.head.value == "head"
-    assert empty_deq.head.previous is None
-    assert empty_deq.head.next.value == "torso"
-    assert empty_deq.head.next.previous.value == "head"
-    assert empty_deq.head.next.next.value == "tail"
-    assert empty_deq.head.next.next.previous.value == "torso"
-    assert empty_deq.tail.value == "tail"
-    assert empty_deq.tail.next is None
-    assert empty_deq.tail.previous.value == "torso"
-    assert empty_deq.tail.previous.next.value == "tail"
-    assert empty_deq.tail.previous.previous.value == "head"
-    assert empty_deq.tail.previous.previous.next.value == "torso"
+    assert empty_deq.size() == 3
+    assert empty_deq.peekleft() == "head"
+    assert empty_deq.peek() == "tail"
 
 
 def test_deq_pop(populated_deq):
     assert populated_deq.pop() == "tail"
-    assert populated_deq.tail.value == "tail_prev"
-    assert populated_deq.tail.previous.value == "head_next"
-    assert populated_deq.tail.next is None
     populated_deq.pop()
     populated_deq.pop()
-    assert populated_deq.head == populated_deq.tail
     assert populated_deq.pop() == "head"
-    assert populated_deq.head == None
-    assert populated_deq.head == populated_deq.tail
+    assert populated_deq.size() == 0
     with pytest.raises(ValueError):
         populated_deq.pop()
 
 
 def test_deq_popleft(populated_deq):
     assert populated_deq.popleft() == "head"
-    assert populated_deq.head.value == "head_next"
-    assert populated_deq.head.next.value == "tail_prev"
-    assert populated_deq.head.previous is None
     populated_deq.popleft()
     populated_deq.popleft()
-    assert populated_deq.head == populated_deq.tail
     assert populated_deq.popleft() == "tail"
-    assert populated_deq.head == None
-    assert populated_deq.head == populated_deq.tail
+    assert populated_deq.size() == 0
     with pytest.raises(ValueError):
         populated_deq.popleft()
