@@ -2,7 +2,7 @@
 
 import pytest
 
-from code_fellows.deque_copy import Deque
+from code_fellows.deque2 import Deque
 
 
 @pytest.fixture(scope="function")

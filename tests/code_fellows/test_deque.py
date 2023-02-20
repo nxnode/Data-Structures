@@ -53,11 +53,6 @@ def test_deq_pop_and_size(populated_deq):
     assert populated_deq.size() == 3
     assert populated_deq.pop() == "tail_prev"
     assert populated_deq.size() == 2
-    # should the deque pop all the way to the head?
-    # assert populated_deq.pop() == "head_next"
-    # assert populated_deq.size() == 1
-    # assert populated_deq.pop() == "head"
-    # assert populated_deq.size() == 0
 
 
 def test_deq_append_and_popleft(empty_deq):
