@@ -44,7 +44,7 @@ def test_deq_append_and_pop(empty_deq):
     expected = "No tail to pop"
     assert expected in str(exc_info.value)
     assert empty_deq.peek() is None
-    assert empty_deq.__len__() == 0
+    assert len(empty_deq) == 0
 
 
 def test_deq_pop_and_size(populated_deq):
