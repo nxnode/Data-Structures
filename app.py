@@ -14,3 +14,12 @@ def hello_other():
     print(request.args)
     print(request.args["abc"])
     return "other"
+
+
+@app.route("/echo/", methods=["POST"])
+def echo():
+    print(dir(request))
+    print(request.data)
+    data = request.json
+    data = {value: key for key, value in data.items()}
+    return data
