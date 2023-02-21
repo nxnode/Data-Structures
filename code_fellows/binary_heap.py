@@ -2,11 +2,14 @@
 
 
 class Heap:
-    def __init__(self):
+    def __init__(self, values=None):
         self._length = 0
         self.size = 0
+        self.root = None
+        if values:
+            pass
 
-    def push(self, vakue):
+    def push(self, value):
         pass
 
     def pop(self):
@@ -16,6 +19,6 @@ class Heap:
 class Node:
     def __init__(self, value):
         self.value = value
-        self.left = None
-        self.right = None
+        self.child_left = None
+        self.child_right = None
         self.parent = None
